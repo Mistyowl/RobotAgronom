@@ -27,7 +27,32 @@ At each stop, the robot:
 
 ## JSON file structure (data.json)
 ``
-To be added later
+[
+  {
+    "timestamp": 51262,
+    "humi": 22.7,
+    "temp": 21.9,
+    "cond": 182,
+    "phph": 5.3,
+    "nitro": 0,
+    "phos": 45,
+    "pota": 37,
+    "soli": 100,
+    "tds": 91
+  },
+  {
+    "timestamp": 69584,
+    "humi": 22.7,
+    "temp": 21.9,
+    "cond": 182,
+    "phph": 5.3,
+    "nitro": 0,
+    "phos": 45,
+    "pota": 37,
+    "soli": 100,
+    "tds": 91
+  }
+]
 ``
 
 
