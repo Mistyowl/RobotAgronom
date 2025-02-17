@@ -19,8 +19,8 @@ WebServer server(80);
 GStepper<STEPPER4WIRE> stepper(2038, 26, 14, 27, 12);
 
 // Конфигурация DC моторов
-#define MOTOR_A_IN1 25
-#define MOTOR_A_IN2 23
+#define MOTOR_A_IN1 13
+#define MOTOR_A_IN2 34
 #define MOTOR_B_IN3 32
 #define MOTOR_B_IN4 35
 
@@ -259,7 +259,7 @@ void handleSetCalibration() {
 
 // ================== Управление зондом ==================
 void startLoweringProbe() {
-  stepper.setTarget(-1000, ABSOLUTE); // Опускание на полную глубину 50000
+  stepper.setTarget(-16000, ABSOLUTE); // Опускание на полную глубину 50000
   currentState = LOWERING_PROBE;
 }
 

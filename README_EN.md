@@ -87,6 +87,12 @@ At each stop, the robot:
     - Remove the SD card from the robot.
     - Insert it into the computer file ``data.json`` contains all measurements.
 
+## Веб-интерфейс
+![Веб-интерфейс](https://github.com/Mistyowl/RobotAgronom/blob/main/src/interface.jpg)
+
+## Схема подключения
+![Схема подключения](https://github.com/Mistyowl/RobotAgronom/blob/main/src/wiring.png)
+
 ## Tips and Troubleshooting
 - **The SD card is not detected:**
 - Check if the card is connected.
@@ -98,3 +104,7 @@ At each stop, the robot:
 - **There is no data in the interface:**
 - Refresh the page (F5).
 - Make sure that the sensor is fully lowered.
+
+## Updates
+* v1.0 - release
+* v1.1 - fixed connection pins, added pinout diagram + minor changes
