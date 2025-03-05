@@ -1,3 +1,7 @@
+![GitHub Release](https://img.shields.io/github/v/release/Mistyowl/RobotAgronom)
+![GitHub License](https://img.shields.io/github/license/Mistyowl/RobotAgronom)
+[![Translate README](https://img.shields.io/badge/README-ENGLISH-blueviolet.svg)](README_EN.md) 
+
 This is an automatic translation, may be correct in som place.
 
 # RobotAgronom
@@ -55,6 +59,37 @@ At each stop, the robot:
 ]
 ``
 
+## Component base
+| № | Part name | Quantity | Total cost |
+| - | ------------------- | ------ | ------------------: |
+| 1. | ESP32 38PIN controller | 1 pc. | 545 ₽ |
+| 2. | 28BYJ-48 stepper motor with ULN2003 driver | 1 pc. | 291 ₽ |
+| 3. | JGY370 55 rpm gear motor, 6mm shaft | 2 pcs. | 1800 ₽ |
+| 4. | L298N motor driver | 1 pc. | 320 ₽ |
+| 5. | RS485 UART (TTL) converter | 1 pc. | 259 ₽ |
+| 6. | RS485 Modbus Soil Sensor 7 in 1 | 1 pc. | 2958 ₽ |
+| 7. | MINI SD Arduino Card Reader Module | 1 pc. | 205 ₽ |
+| 8. | ABEC-7 608 RS Bearings | 1 pc. | 283 ₽ |
+| 9. | GT2 10mm Open Toothed Belt, Reinforced with Polymer Fiber | 4 pcs. | 1260 ₽ |
+| 10. | Rubber O-ring (outer diameter 12mm, thickness 2mm) | 100 pcs. | 400 ₽ |
+| 11. | 18650 Battery Case | 2 pcs. | 306 ₽ |
+| 12. | PETG Plastic Used for Printing | 3 kg. | 5700 ₽ |
+| 13. | SD Card 16 GB | 1 pc. | 350 ₽ |
+| 14. | Li-ion 18650 Battery | 3 pcs. | 720 ₽ |
+| 15. | Voltage Converter LM2596 | 1 pc. | 142 ₽ |
+|     |                          | Total: | 15 539 ₽ |
+
+| Bolts | Quantity |
+| ----- | -----: |
+| M4x20 | 7 pcs. |
+| M8x60 | 2 pcs. |
+| M8x70 | 2 pcs. |
+| M3x30 | 20 pcs. |
+| Nuts | Qty |
+| M3 | 16 pcs. |
+| M4 | 5 pcs. |
+| M8 | 6 pcs. |
+
 
 ## Instructions
 #### Step 1. Connect
@@ -87,11 +122,11 @@ At each stop, the robot:
     - Remove the SD card from the robot.
     - Insert it into the computer file ``data.json`` contains all measurements.
 
-## Веб-интерфейс
-![Веб-интерфейс](https://github.com/Mistyowl/RobotAgronom/blob/main/src/interface.jpg)
+## Web interface
+![Web interface img](https://github.com/Mistyowl/RobotAgronom/blob/main/src/interface.jpg)
 
-## Схема подключения
-![Схема подключения](https://github.com/Mistyowl/RobotAgronom/blob/main/src/wiring.png)
+## Connection diagram
+![Connection diagram img](https://github.com/Mistyowl/RobotAgronom/blob/main/src/wiring.png)
 
 ## Tips and Troubleshooting
 - **The SD card is not detected:**
@@ -108,3 +143,4 @@ At each stop, the robot:
 ## Updates
 * v1.0 - release
 * v1.1 - fixed connection pins, added pinout diagram + minor changes
+* v1.2 - updated README.md, added component base
