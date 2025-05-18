@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgroBot - Передовой сельскохозяйственный робот</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+<style>
+    /* Base Styles */
+    :root {
+        --primary-color: #2e7d32;
+        --primary-light: #60ad5e;
+        --primary-dark: #005005;
+        --secondary-color: #ffd54f;
+        --text-dark: #212121;
+        --text-light: #757575;
+        --white: #ffffff;
+        --background-light: #f5f5f5;
+        --background-dark: #e0e0e0;
+        --border-radius: 8px;
+        --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        background-color: var(--white);
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+        color: var(--primary-dark);
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+    }
+
+    .btn {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 12px 24px;
+        border-radius: var(--border-radius);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--box-shadow);
+    }
+
+    /* Header */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 15px 0;
+    }
+
+    header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+    }
+
+    .menu {
+        display: flex;
+    }
+
+    .menu li {
+        margin-left: 30px;
+    }
+
+    .menu a {
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .menu a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+    }
+
+    .menu a:hover {
+        color: var(--primary-color);
+    }
+
+    .menu a:hover::after {
+        width: 100%;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        cursor: pointer;
+    }
+
+    .mobile-menu-btn span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: var(--primary-dark);
+        border-radius: 3px;
+        transition: var(--transition);
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 150px 0 100px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+    }
+
+    .hero .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .hero-content {
+        flex: 1;
+        padding-right: 50px;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--primary-dark);
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        color: var(--text-light);
+        margin-bottom: 30px;
+        max-width: 500px;
+    }
+
+    .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-image img {
+        max-width: 100%;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+    }
+
+    /* Features Section */
+    .features {
+        padding: 100px 0;
+        background-color: var(--white);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .feature-card {
+        background-color: var(--background-light);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--box-shadow);
+    }
+
+    .feature-icon {
+        margin-bottom: 20px;
+    }
+
+    .feature-icon img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--primary-dark);
+    }
+
+    .feature-card p {
+        color: var(--text-light);
+    }
+
+    /* Specifications Section */
+    .specifications {
+        padding: 100px 0;
+        background-color: var(--background-light);
+    }
+
+    .specs-container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .specs-image {
+        flex: 1;
+    }
+
+    .specs-image img {
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+    }
+
+    .specs-details {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .spec-item h3 {
+        font-size: 1.2rem;
+        color: var(--primary-dark);
+        margin-bottom: 10px;
+    }
+
+    .spec-item p {
+        color: var(--text-light);
+    }
+
+    /* Applications Section */
+    .applications {
+        padding: 100px 0;
+        background-color: var(--white);
+    }
+
+    .applications-slider {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .slider-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        height: 450px;
+    }
+
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .slide.active {
+        opacity: 1;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .slide-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        color: var(--white);
+    }
+
+    .slide-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .slider-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .prev-btn, .next-btn {
+        background-color: var(--primary-color);
+        color: var(--white);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+    }
+
+    .prev-btn:hover, .next-btn:hover {
+        background-color: var(--primary-dark);
+    }
+
+    .slider-dots {
+        display: flex;
+        justify-content: center;
+        margin: 0 20px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: var(--background-dark);
+        margin: 0 5px;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .dot.active {
+        background-color: var(--primary-color);
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+        padding: 100px 0;
+        background-color: var(--background-light);
+    }
+
+    .testimonials-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .testimonial {
+        background-color: var(--white);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        box-shadow: var(--box-shadow);
+    }
+
+    .testimonial-content {
+        margin-bottom: 20px;
+    }
+
+    .testimonial-content p {
+        font-style: italic;
+        color: var(--text-light);
+        position: relative;
+        padding: 0 20px;
+    }
+
+    .testimonial-content p::before,
+    .testimonial-content p::after {
+        content: '"';
+        font-size: 2rem;
+        color: var(--primary-light);
+        position: absolute;
+    }
+
+    .testimonial-content p::before {
+        left: 0;
+        top: -10px;
+    }
+
+    .testimonial-content p::after {
+        right: 0;
+        bottom: -10px;
+    }
+
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+    }
+
+    .testimonial-author img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 15px;
+        object-fit: cover;
+    }
+
+    .author-info h4 {
+        font-size: 1.1rem;
+        color: var(--primary-dark);
+    }
+
+    .author-info p {
+        font-size: 0.9rem;
+        color: var(--text-light);
+    }
+
+    /* Contact Section */
+    .contact {
+        padding: 100px 0;
+        background-color: var(--white);
+    }
+
+    .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 50px;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .info-item h3 {
+        font-size: 1.2rem;
+        color: var(--primary-dark);
+        margin-bottom: 10px;
+    }
+
+    .contact-form {
+        background-color: var(--background-light);
+        padding: 30px;
+        border-radius: var(--border-radius);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius);
+        font-family: inherit;
+        font-size: 1rem;
+        transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+    }
+
+    .btn-submit {
+        width: 100%;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #1b5e20;
+        color: var(--white);
+        padding: 70px 0 20px;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    }
+
+    .footer-logo h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .footer-logo p {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .footer-links {
+        display: flex;
+        gap: 50px;
+    }
+
+    .footer-column h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .footer-column h3::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 30px;
+        height: 2px;
+        background-color: var(--secondary-color);
+    }
+
+    .footer-column ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+        color: rgba(255, 255, 255, 0.7);
+        transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+        color: var(--white);
+    }
+
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-bottom p {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .footer-legal {
+        display: flex;
+        gap: 20px;
+    }
+
+    .footer-legal a {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+        transition: var(--transition);
+    }
+
+    .footer-legal a:hover {
+        color: var(--white);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+        .hero .container {
+            flex-direction: column;
+        }
+        
+        .hero-content {
+            padding-right: 0;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .hero-content p {
+            margin: 0 auto 30px;
+        }
+        
+        .specs-container {
+            flex-direction: column;
+        }
+        
+        .contact-container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+        
+        .menu {
+            display: none;
+        }
+        
+        .mobile-menu-btn {
+            display: flex;
+        }
+        
+        .menu.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        .menu.active li {
+            margin: 10px 0;
+        }
+        
+        .specs-details {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-content {
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .footer-links {
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .footer-bottom {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+        
+        .slider-container {
+            height: 350px;
+        }
+    }
+
+    /* Form Success Message */
+    .form-success {
+        text-align: center;
+        padding: 30px;
+    }
+
+    .form-success h3 {
+        color: var(--primary-dark);
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+    }
+
+    .form-success p {
+        color: var(--text-light);
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="logo">
+            <h1>AgroBot</h1>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#features">Особенности</a></li>
+                <li><a href="#specs">Характеристики</a></li>
+                <li><a href="#applications">Применение</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Будущее сельского хозяйства</h1>
+            <p>Представляем AgroBot - автономный робот, революционизирующий сельское хозяйство с помощью технологий точного земледелия</p>
+            <a href="#contact" class="btn">Запросить демо</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-oiUCBzEqrg7c1katOABaD9jFRTz2y7.png" alt="Сельскохозяйственный робот AgroBot">
+        </div>
+    </div>
+</section>
+
+<section id="features" class="features">
+    <div class="container">
+        <h2 class="section-title">Ключевые особенности</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%202-EKQjGaF084KznwnFEFnjwT0XnbEudW.png" alt="Иконка точности">
+                </div>
+                <h3>Точное земледелие</h3>
+                <p>Сантиметровая точность для операций посадки, мониторинга и сбора урожая</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%205-BDPCqjP9hCNg1ItnJkAQFhZyiA4c9W.png" alt="Иконка автономности">
+                </div>
+                <h3>Полная автономность</h3>
+                <p>Работает 24/7 с минимальным контролем человека благодаря продвинутым алгоритмам ИИ</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%204-QkSmD8EL0unzbOQnXOSeFyoNycOcyM.png" alt="Иконка данных">
+                </div>
+                <h3>Аналитика данных</h3>
+                <p>Собирает и анализирует данные о почве, урожае и окружающей среде для оптимального принятия решений</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%203-7dshooxQo0OBeSbmZ5WOWJ1Py9ji9K.png" alt="Иконка экологичности">
+                </div>
+                <h3>Экологичность</h3>
+                <p>Снижает использование химикатов на 60% благодаря целевому применению и мониторингу</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="specs" class="specifications">
+    <div class="container">
+        <h2 class="section-title">Технические характеристики</h2>
+        <div class="specs-container">
+            <div class="specs-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-QqcxYbDWZB2X7is8p6x575g5ZasK7s.png" alt="Технические характеристики AgroBot">
+            </div>
+            <div class="specs-details">
+                <div class="spec-item">
+                    <h3>Размеры</h3>
+                    <p>Длина: 30см | Ширина: 30см | Высота: 20см</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Вес</h3>
+                    <p>2.5кг (без навесного оборудования)</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Время работы</h3>
+                    <p>25 минут непрерывной работы</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Сенсоры</h3>
+                    <p>Soil Sensor - датчик измерения поченных показаний</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Связь</h3>
+                    <p>WiFi</p>
+                </div>
+                <div class="spec-item">
+                    <h3>Условия эксплуатации</h3>
+                    <p>от -10°C до 45°C, IP67 (пыле- и влагозащита)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="applications" class="applications">
+    <div class="container">
+        <h2 class="section-title">Применение</h2>
+        <div class="applications-slider">
+            <div class="slider-container">
+                <div class="slide active">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/level1.jpg-EsxcJJ2zwJXARudbjdjsXwVqkUIXNJ.jpeg" alt="Точная посадка">
+                    <div class="slide-content">
+                        <h3>Точная посадка</h3>
+                        <p>Оптимальное размещение семян с идеальным интервалом и глубиной</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/level2.jpg-2YHjl5Y33bplqn4Ah9vDtVw8mcgV1o.jpeg" alt="Мониторинг посевов">
+                    <div class="slide-content">
+                        <h3>Мониторинг посевов</h3>
+                        <p>Раннее обнаружение вредителей, болезней и дефицита питательных веществ</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev-btn">&lt;</button>
+                <div class="slider-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                </div>
+                <button class="next-btn">&gt;</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials" class="testimonials">
+    <div class="container">
+        <h2 class="section-title">Отзывы фермеров</h2>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>"AgroBot повысил нашу производительность на 35% при одновременном снижении затрат на рабочую силу. Возможности точного земледелия действительно революционны."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%92%D0%B0%D1%81%D1%8F.jpg-P5glea7AUNcZOLeNDPbdNDf5YCtUXU.jpeg" alt="Портрет фермера">
+                    <div class="author-info">
+                        <h4>Василий Петров</h4>
+                        <p>Фермер, Краснодар</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>"Аналитика данных, предоставляемая AgroBot, помогла нам оптимизировать орошение и сократить использование воды на 40%. Это экономично и экологично."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%96%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0-NRaKkJzkP9CLsFpIVbwbH0YPfcXMUx.png" alt="Портрет фермера">
+                    <div class="author-info">
+                        <h4>Елена Соколова</h4>
+                        <p>Владелец виноградника, Крым</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Свяжитесь с нами</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-item">
+                    <h3>Адрес</h3>
+                    <p>ул. Карла Маркса, 7А, Дятьково, Россия</p>
+                </div>
+                <div class="info-item">
+                    <h3>Email</h3>
+                    <p>sava.gorbachev.2020@mail.ru</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="demo-form">
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="farm-size">Размер хозяйства (гектары)</label>
+                        <input type="number" id="farm-size" name="farm-size">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Запросить демо</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>AgroBot</h2>
+                <p>Революция в сельском хозяйстве с помощью робототехники</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Компания</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Карьера</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#">Партнеры</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Продукты</h3>
+                    <ul>
+                        <li><a href="#">AgroBot Базовый</a></li>
+                        <li><a href="#">AgroBot Про</a></li>
+                        <li><a href="#">AgroBot Энтерпрайз</a></li>
+                        <li><a href="#">Аксессуары</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Ресурсы</h3>
+                    <ul>
+                        <li><a href="#">Документация</a></li>
+                        <li><a href="#">Поддержка</a></li>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Кейсы</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AgroBot Technologies. Все права защищены.</p>
+            <div class="footer-legal">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Условия использования</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const menu = document.querySelector('.menu');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                menu.classList.toggle('active');
+                const spans = mobileMenuBtn.querySelectorAll('span');
+                
+                if (menu.classList.contains('active')) {
+                    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    spans[1].style.opacity = '0';
+                    spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                } else {
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                }
+            });
+        }
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    const spans = mobileMenuBtn.querySelectorAll('span');
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Applications Slider
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', function() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            });
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                showSlide(index);
+            });
+        });
+        
+        // Auto slide change
+        let slideInterval = setInterval(function() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+        
+        // Pause auto slide on hover
+        const sliderContainer = document.querySelector('.slider-container');
+        if (sliderContainer) {
+            sliderContainer.addEventListener('mouseenter', function() {
+                clearInterval(slideInterval);
+            });
+            
+            sliderContainer.addEventListener('mouseleave', function() {
+                slideInterval = setInterval(function() {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    showSlide(currentSlide);
+                }, 5000);
+            });
+        }
+        
+        // Form Submission
+        const demoForm = document.getElementById('demo-form');
+        if (demoForm) {
+            demoForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(demoForm);
+                const formDataObj = {};
+                formData.forEach((value, key) => {
+                    formDataObj[key] = value;
+                });
+                
+                // Show submission feedback (in a real app, you'd send this data to a server)
+                const formElement = demoForm.parentElement;
+                formElement.innerHTML = `
+                    <div class="form-success">
+                        <h3>Спасибо за ваш интерес!</h3>
+                        <p>Мы получили ваш запрос и свяжемся с вами в ближайшее время.</p>
+                    </div>
+                `;
+                
+                console.log('Form submitted with data:', formDataObj);
+            });
+        }
+        
+        // Sticky Header Effect
+        const header = document.querySelector('header');
+        let lastScrollTop = 0;
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.style.padding = '10px 0';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '15px 0';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    });
+</script>
+</body>
+</html>
